@@ -26,6 +26,7 @@ for movie_data in data['movies']:
   movie.synopsis = movie_data['synopsis']
   movie.posters = movie_data['posters']
   movie.abridged_cast = movie_data['abridged_cast']
+  movie.release_dates = movie_data['release_dates']
   movie.save()
 
 assert Movie.objects.count() == int(data['total'])

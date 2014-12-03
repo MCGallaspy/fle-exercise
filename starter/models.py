@@ -10,3 +10,4 @@ class Movie(models.Model):
   synopsis = models.TextField()
   posters = JSONField()
   abridged_cast = JSONField()
+  release_dates = JSONField()
