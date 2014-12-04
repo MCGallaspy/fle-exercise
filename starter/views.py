@@ -5,20 +5,19 @@ from starter.forms import MovieFilterForm
 
 def landing_page(request):
   filter_form = MovieFilterForm(request.GET)
+  context = {}
+  context["filter_form"] = filter_form
   if request.method == 'POST':
     search_query = request.POST["search-query"]
     in_title = Movie.objects.filter(title__icontains=search_query)
     in_synopsis = Movie.objects.filter(synopsis__icontains=search_query)
     movies = set(chain(in_title, in_synopsis))
-    return render(request, "starter/movie_list.html", {"movies": movies,
-                                                       "search_query": search_query,
-                                                       "filter_form": filter_form,
-                                                      })
+    context["search_query"] = search_query
+    context["movies"] = movies
   else:
     movies = Movie.objects.all()
-    return render(request, "starter/movie_list.html", {"movies": movies,
-                                                       "filter_form": filter_form,
-                                                      })
+    context["movies"] = movies
+  return render(request, "starter/movie_list.html", context)
 
 def movie_detail(request, movie_id):
   movie = Movie.objects.get(id=movie_id)
