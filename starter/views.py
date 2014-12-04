@@ -20,9 +20,14 @@ def landing_page(request):
   
   if filter_form.is_valid():
     if 'critic_score_op' in filter_form.cleaned_data and filter_form.cleaned_data['critic_score_threshold'] is not None:
-      cs_op = filter_form.cleaned_data['critic_score_op']
-      cs_th = filter_form.cleaned_data['critic_score_threshold']
-      movies = movies.critic_score_filter(cs_op, cs_th)
+      movies = movies.critic_score_filter( filter_form.cleaned_data['critic_score_op'], 
+                                           filter_form.cleaned_data['critic_score_threshold'])
+    if 'audience_score_op' in filter_form.cleaned_data and filter_form.cleaned_data['audience_score_threshold'] is not None:
+      movies = movies.audience_score_filter( filter_form.cleaned_data['audience_score_op'], 
+                                             filter_form.cleaned_data['audience_score_threshold'])
+    if 'runtime_op' in filter_form.cleaned_data and filter_form.cleaned_data['runtime_threshold'] is not None:
+      movies = movies.runtime_filter( filter_form.cleaned_data['runtime_op'], 
+                                      filter_form.cleaned_data['runtime_threshold'])
 
   context["movies"] = movies
   return render(request, "starter/movie_list.html", context)
