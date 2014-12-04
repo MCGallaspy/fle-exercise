@@ -8,7 +8,7 @@
   </div>
   <div class="row poster-row">
     <div class="col-md-2">
-      <img src="{{ movie.posters.detailed }}">
+      <img class="img-responsive" src="{{ movie.posters.detailed }}">
     </div>
     <div class="col-md-4 panel panel-default score-panel">
       <div class="critics-subpanel">
@@ -26,8 +26,30 @@
     </div>
   </div>
   <div class="row movie-info-row">
+    <div class="col-md-12 panel panel-info movie-info-panel">
+      <div class="panel-heading h3">Movie Info</div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Synopsis:</strong> {{ movie.synopsis }}</li>
+          <li class="list-group-item"><strong>Runtime:</strong> {{ movie.runtime }} minutes</li>
+          <li class="list-group-item"><strong>MPAA rating:</strong> {{ movie.mpaa_rating }}</li>
+        </ul>
+      </div>
+    </div>
   </div>
   <div class="row cast-row">
+    <div class="col-md-12 panel panel-info cast-panel">
+      <div class="panel-heading h3">Cast</div>
+      <div class="panel-body">
+        <ul class="list-group">
+          {% for role in movie.abridged_cast %}
+            <li class="list-group-item"><strong>{{ role.name }}</strong>
+              {% if role.characters %} as {{ role.characters|join:", " }} {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}
