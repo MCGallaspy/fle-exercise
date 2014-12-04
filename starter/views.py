@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from starter.models import Movie
-from itertools import chain
 from starter.forms import MovieFilterForm
 from django.db.models import Q
 
