@@ -1,5 +1,23 @@
 {% extends "starter/base.html" %}
 
 {% block content %}
-The list of movies will go here.
+<div class="fluid-container">
+  <div class="col-md-2">
+    Search and filter options will go here.
+  </div>
+  <div class="col-md-10">
+    <ul class="list-group">
+    {% for movie in movies %}
+      <li class="list-group-item movie-item">
+        <img src="{{ movie.posters.profile }}">
+        <div class="movie-title">{{ movie.title }}</div>
+        <div class="movie-release-date">{{ movie.release_dates.theater }}</div>
+        {% if movie.ratings.critics_score != -1 %}
+          <div class="movie-rating">Critics Rating: {{ movie.ratings.critics_score }}%</div>
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+</div>
 {% endblock %}
