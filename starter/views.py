@@ -6,4 +6,5 @@ def landing_page(request):
   return render(request, "starter/movie_list.html", {"movies": movies})
 
 def movie_detail(request, movie_id):
-  return render(request, "starter/movie_detail.html", {"movie_id": movie_id})
+  movie = Movie.objects.get(id=movie_id)
+  return render(request, "starter/movie_detail.html", {"movie": movie})

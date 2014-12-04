@@ -1,5 +1,33 @@
 {% extends "starter/base.html" %}
 
 {% block content %}
-The detailed view of a movie with id {{ movie_id }} will go here.
+<div class="container-fluid">
+  <div class="row title-row">
+    <span class="h1">{{ movie.title }}</span>
+    <span class="title-date">({{ movie.release_dates.theater }})</span>
+  </div>
+  <div class="row poster-row">
+    <div class="col-md-2">
+      <img src="{{ movie.posters.detailed }}">
+    </div>
+    <div class="col-md-4 panel panel-default score-panel">
+      <div class="critics-subpanel">
+        <h3>Critics' Score</h3>
+        {% if movie.ratings.critics_score != -1 %}
+          <h3>{{ movie.ratings.critics_score}}%</h3>
+        {% else %}
+          <h3>No score</h3>
+        {% endif %}
+      </div>
+      <div class="audience-subpanel">
+        <h3>Audience Score</h3>
+        <h3>{{ movie.ratings.audience_score}}%</h3>
+      </div>
+    </div>
+  </div>
+  <div class="row movie-info-row">
+  </div>
+  <div class="row cast-row">
+  </div>
+</div>
 {% endblock %}
