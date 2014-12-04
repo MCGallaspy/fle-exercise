@@ -2,6 +2,13 @@
 
 {% block content %}
 <div class="fluid-container">
+  {% if search_query %}
+    <div class="row">
+      <span class="h3">Search results for: </span>
+      <span>{{ search_query }}</span>
+      <span> (in title or synopsis) </span> 
+    </div>
+  {% endif %}
   <div class="col-md-2">
     Search and filter options will go here.
   </div>
