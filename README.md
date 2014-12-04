@@ -6,7 +6,7 @@ Possible improvements:
 * Added a filter form for movies, but I still need to:
   * Do something with the results
   * Style the form
-
+* It would be nice if searching for a term and then filtering worked as expected (it doesn't, but the reverse order does). One way to do that is to keep the search term as a cookie.
 
 Instructions
 ----

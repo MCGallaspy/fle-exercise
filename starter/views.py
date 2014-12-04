@@ -2,21 +2,29 @@ from django.shortcuts import render
 from starter.models import Movie
 from itertools import chain
 from starter.forms import MovieFilterForm
+from django.db.models import Q
 
 def landing_page(request):
   filter_form = MovieFilterForm(request.GET)
   context = {}
+  movies = []
   context["filter_form"] = filter_form
   if request.method == 'POST':
     search_query = request.POST["search-query"]
-    in_title = Movie.objects.filter(title__icontains=search_query)
-    in_synopsis = Movie.objects.filter(synopsis__icontains=search_query)
-    movies = set(chain(in_title, in_synopsis))
+    movies = Movie.objects.filter( Q(title__icontains=search_query) |
+                                   Q(synopsis__icontains=search_query)
+                                 )
     context["search_query"] = search_query
-    context["movies"] = movies
   else:
     movies = Movie.objects.all()
-    context["movies"] = movies
+  
+  if filter_form.is_valid():
+    if 'critic_score_op' in filter_form.cleaned_data and filter_form.cleaned_data['critic_score_threshold'] is not None:
+      cs_op = filter_form.cleaned_data['critic_score_op']
+      cs_th = filter_form.cleaned_data['critic_score_threshold']
+      movies = movies.critic_score_filter(cs_op, cs_th)
+
+  context["movies"] = movies
   return render(request, "starter/movie_list.html", context)
 
 def movie_detail(request, movie_id):
