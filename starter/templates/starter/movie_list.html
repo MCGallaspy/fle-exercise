@@ -11,8 +11,22 @@
   {% endif %}
   <div class="col-md-2">
     <form action="{% url 'landing_page' %}" method="get" class="form">
-        {{ filter_form.as_p }}
-        <button type="submit" class="btn btn-primary">Filter results</button>
+      <div class="form-field">
+        <strong>Critic score: </strong>
+        {{ filter_form.critic_score_op }}
+        {{ filter_form.critic_score_threshold }}
+      </div>
+      <div class="form-field">
+        <strong>Audience score: </strong>
+        {{ filter_form.audience_score_op }}
+        {{ filter_form.audience_score_threshold }}
+      </div>
+      <div class="form-field">
+        <strong>Runtime: </strong>
+        {{ filter_form.runtime_op }}
+        {{ filter_form.runtime_threshold }}
+      </div>
+      <button type="submit" class="btn btn-primary">Filter results</button>
     </form>
   </div>
   <div class="col-md-10">

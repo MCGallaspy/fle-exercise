@@ -40,3 +40,11 @@
 .critics-subpanel {
   border-right: 1px solid grey;
 }
+
+.form-field {
+  margin: 5px 0px;
+}
+
+#id_runtime_threshold {
+  width: 53px;
+}
