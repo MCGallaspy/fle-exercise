@@ -1,6 +1,11 @@
 Michael's Working Notes
 ----
-Possible improvements: pagination on movie list display.
+Possible improvements:
+* pagination on movie list display.
+* Better search functionality (allow inexact matches, search on other attributes)
+* Added a filter form for movies, but I still need to:
+  * Do something with the results
+  * Style the form
 
 
 Instructions
