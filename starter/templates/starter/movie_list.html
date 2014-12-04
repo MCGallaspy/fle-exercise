@@ -9,12 +9,19 @@
     <ul class="list-group">
     {% for movie in movies %}
       <li class="list-group-item movie-item">
-        <img src="{{ movie.posters.profile }}">
-        <div class="movie-title">{{ movie.title }}</div>
-        <div class="movie-release-date">{{ movie.release_dates.theater }}</div>
-        {% if movie.ratings.critics_score != -1 %}
-          <div class="movie-rating">Critics Rating: {{ movie.ratings.critics_score }}%</div>
-        {% endif %}
+        <a href="/movies/{{ movie.id }}">
+          <img class="movie-item-thumbnail" src="{{ movie.posters.profile }}">
+          <div class="movie-title">{{ movie.title }}</div>
+        </a>
+        <div class="movie-release-date">Released: {{ movie.release_dates.theater }}</div>
+        <div class="movie-scores">
+          {% if movie.ratings.critics_score != -1 %}
+            <div class="critics-rating">Critics: {{ movie.ratings.critics_score }}%</div>
+          {% endif %}
+          {% if movie.ratings.audience_score %}
+            <div class="audience-rating">Audience: {{ movie.ratings.audience_score }}%</div>
+          {% endif %}
+        </div>
       </li>
     {% endfor %}
     </ul>

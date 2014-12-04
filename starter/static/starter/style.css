@@ -1,0 +1,13 @@
+.movie-item {
+  width: 172px;
+  height: 285px;
+  float: left;
+}
+
+.movie-item-thumbnail {
+  max-width: 120px;
+}
+
+.movie-release-date, .movie-scores {
+  font-size: small;
+}

@@ -1,3 +1,8 @@
+Michael's Working Notes
+----
+Possible improvements: pagination on movie list display.
+
+
 Instructions
 ----
 

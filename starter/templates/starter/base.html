@@ -1,15 +1,18 @@
+{% load staticfiles %}
 {% load bootstrap3 %}
+
 <html>
   <head>
     <title>
       Foundation for Learning Equality
     </title>
+    {% bootstrap_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'starter/style.css' %}" />
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js" />
+    {% bootstrap_javascript %}
   </head>
 
   <body>
-    {% bootstrap_css %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js" />
-    {% bootstrap_javascript %}
 
     <nav class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
