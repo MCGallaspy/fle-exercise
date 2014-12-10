@@ -8,6 +8,8 @@ Another approach to the movie list would be use of asynchronous requests and jav
 
 I spent the most time in this exercise in `starter/models.py`, first in order to make a decision about how to represent the more complex attributes in the dataset, like `ratings`, since Django Models don't have a native dictionary field. I chose to use a package called JSONField (and I added it to `requirements.txt`), which works pretty much how you would expect. The decision to make `ratings` a JSONField and the need to filter querysets on its parsed attributes posed a problem, as a JSONField is stored unparsed in the database. This required me to implement a custom Manager for the Model, and after some reading I chose to implement it such that it simply extends the available QuerySet methods and allows arbitrary chaining. This is in contrast to simpler implementations of Managers that work in parallel to other Managers and do not allow arbitrary chaining. For example, constructions like `Movie.objects.some_custom_filter().some_default_filter().any_arbitrary_queryset_method()` are possible in my implementation.
 
+A little addendum to the above: A closer inspection of the docs suggests there are [some gotchas](https://docs.djangoproject.com/en/1.6/topics/db/managers/#writing-correct-managers-for-use-in-automatic-manager-instances) with custom managers like this. Also starting in Django 1.7 and beyond you can achieve the same thing in a much [cleaner way](https://docs.djangoproject.com/en/dev/topics/db/managers/#calling-custom-queryset-methods-from-the-manager).
+
 Michael's Working Notes
 ----
 Possible improvements:
