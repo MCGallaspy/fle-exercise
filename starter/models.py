@@ -37,15 +37,15 @@ class CustomFilterQuerySet(models.query.QuerySet):
 
 
 class CustomFilterManager(models.Manager):
-  def get_query_set(self):
+  def get_queryset(self):
     model = models.get_model('starter', 'Movie')
     return CustomFilterQuerySet(model)
 
-    def __getattr__(self, attr, *args):
+    def __getattr__(self, attr):
       try:
-        return getattr(self.__class__, attr, *args)
+        return getattr(self.__class__, attr)
       except AttributeError:
-        return getattr(self.get_query_set(), attr, *args)
+        return getattr(self.get_queryset(), attr)
 
 
 class Movie(models.Model):
